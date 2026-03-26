@@ -1,14 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f172a" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <title>コミュニティバス入力</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乗車カウンター</title>
+<style>
+body { font-family: sans-serif; padding: 20px; }
+button { font-size: 20px; margin: 5px; padding: 10px 20px; }
+</style>
+</head>
+<body>
+<h2>乗車カウンター</h2>
+
+<div>
+<p>一般: <span id="normal">0</span></p>
+<button onclick="add('normal')">＋</button>
+</div>
+
+<div>
+<p>子供: <span id="child">0</span></p>
+<button onclick="add('child')">＋</button>
+</div>
+
+<div>
+<p>高齢者: <span id="senior">0</span></p>
+<button onclick="add('senior')">＋</button>
+</div>
+
+<div>
+<p>障害者: <span id="disabled">0</span></p>
+<button onclick="add('disabled')">＋</button>
+</div>
+
+<h3>合計: <span id="total">0</span></h3>
+
+<script>
+let data = {
+  normal: 0,
+  child: 0,
+  senior: 0,
+  disabled: 0
+};
+
+function add(type){
+  data[type]++;
+  document.getElementById(type).innerText = data[type];
+  updateTotal();
+}
+
+function updateTotal(){
+  let total = data.normal + data.child + data.senior + data.disabled;
+  document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
 </html>
